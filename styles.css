@@ -1,6 +1,6 @@
 @font-face {
-    font-family: myFont;
-    src: url("blue.ttf");
+  font-family: myFont;
+  src: url("blue.ttf");
 }
 
 
@@ -36,18 +36,23 @@ body {
 
 .page-title {
   color: black;
-  font-family:  myFont;
+  font-family: myFont;
   font-weight: normal;
   text-align: center;
   font-size: 6em;
 }
 
-/* .hint{
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  
-} */
+.hint { /*hintnya belum kepanggil*/
+  border-color: blue;
+  color: #fff;
+  box-shadow: 0 0 40px 40px blue inset, 0 0 0 0 blue;
+  transition: all 150ms ease-in-out;
+}
+
+.hint:hover {
+  box-shadow: 0 0 10px 0 blue inset, 0 0 10px 4px blue;
+}
+
 
 .game-info-container {
   grid-column: 1 / -1;
@@ -78,7 +83,7 @@ body {
   margin: 2px;
 }
 
-.pause-button{
+.pause-button {
   margin-top: 10px;
 }
 
@@ -98,11 +103,11 @@ body {
 }
 
 .card.visible .card-back {
-  transform: rotateY(-180deg); 
+  transform: rotateY(-180deg);
 }
 
 .card.visible .card-front {
-  transform: rotateY(0); 
+  transform: rotateY(0);
 }
 
 .card.matched .card-front .card-value {
@@ -112,7 +117,7 @@ body {
 .card-back {
   background-color: black;
   border-color: #FF6D00;
-  transform: rotateY(0); 
+  transform: rotateY(0);
 }
 
 
@@ -158,12 +163,16 @@ body {
 }
 
 @keyframes dance {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: rotate(0)
   }
+
   25% {
     transform: rotate(-30deg)
   }
+
   75% {
     transform: rotate(30deg)
   }
@@ -174,6 +183,7 @@ body {
     background-color: rgba(0, 0, 0, 0);
     font-size: 0;
   }
+
   to {
     background-color: rgba(0, 0, 0, .8);
     font-size: 10em;

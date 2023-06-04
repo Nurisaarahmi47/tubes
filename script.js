@@ -1,5 +1,7 @@
-const score = document.querySelector('.score span')
+let gameButton = document.getElementById("gameButton");
 let gamePaused = false;
+const score = document.querySelector('.score span')
+let audioController;
 
 class AudioController {
     constructor() {
@@ -63,10 +65,12 @@ class MixOrMatch {
     }
     startCountdown() {
         return setInterval(() => {
-            this.timeRemaining--;
-            this.timer.innerText = this.timeRemaining;
-            if (this.timeRemaining === 0)
-                this.gameOver();
+            if (!gamePaused) { // Hanya mengurangi waktu jika game tidak dalam status dijeda
+                this.timeRemaining--;
+                this.timer.innerText = this.timeRemaining;
+                if (this.timeRemaining === 0)
+                    this.gameOver();
+            }
         }, 1000);
     }
     gameOver() {
@@ -177,12 +181,10 @@ function ready() {
     hint.addEventListener('click', () => {
         game.flipHint(cards[Math.floor(Math.random() * cards.length)]);
     });
-    gameButton.addEventListener("click",handleGameButton);
+    
 }
-// const pause = pauseGame
-const gameButton = document.getElementById("gameButton");
-gameButton.addEventListener('click',gamePaused)
-const handleGameButton = () => {
+
+let handleGameButton = () => {
     if (!gamePaused) {
         pauseGame();
     } else {
@@ -192,12 +194,14 @@ const handleGameButton = () => {
 
 const pauseGame = () => {
     gamePaused = true;
-    console.log("permainan dijeda")
+    console.log("permainan dijeda");
     gameButton.textContent = "Resume";
+    audioController.stopMusic();
 }
 const resumeGame = () => {
     gamePaused = false;
     console.log("permainan dilanjutkan");
     gameButton.textContent = "Pause";
+    audioController.startMusic();
 }
-
+gameButton.addEventListener('click',handleGameButton)
