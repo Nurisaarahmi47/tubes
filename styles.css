@@ -16,23 +16,46 @@ html {
 
 body {
   margin: 0;
-  background: rgb(136, 136, 216);
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("./Assets/background.jpg");
+  /* background-color: rgba(255, 12, 12, 0.5); */
+  opacity: 0.2; /* Atur tingkat transparansi sesuai keinginan Anda */
+  z-index: -1;
 }
 
 .head {
-  max-width: 480px;
-  border: 2px solid #94c8e8;
+  max-width: 500px;
   margin: auto;
   height: 150px;
-  display: flex;
-  font-size: 50px;
-  justify-content: center;
+  display: block;
+  font-size: 60px;
   align-items: center;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 10px;
   font-family: myFont;
   color: #333;
 }
+.head h2{
+  /* height: fit-content;
+  width: fit-content; */
+  padding-bottom: 10px;
+  
+}
+/* .score{
+  margin: auto;
+  padding-top: 5px;
+  padding-right: 9px;
+  padding-left: 9px;
+} */
 
 .page-title {
   color: black;
@@ -42,17 +65,32 @@ body {
   font-size: 6em;
 }
 
-.hint { /*hintnya belum kepanggil*/
-  border-color: blue;
-  color: #fff;
-  box-shadow: 0 0 40px 40px blue inset, 0 0 0 0 blue;
-  transition: all 150ms ease-in-out;
+#hint { 
+  background-color: #78327a;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: myFont;
 }
-
-.hint:hover {
-  box-shadow: 0 0 10px 0 blue inset, 0 0 10px 4px blue;
+#hint:hover{
+  background-color: #c346c7;
 }
-
+#gameButton { 
+  background-color: #78327a;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: myFont;
+}
+#gameButton:hover{
+  background-color: #c346c7;
+}
 
 .game-info-container {
   grid-column: 1 / -1;
