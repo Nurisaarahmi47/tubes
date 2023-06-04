@@ -179,8 +179,9 @@ function ready() {
     });
     gameButton.addEventListener("click",handleGameButton);
 }
-const pause = pauseGame
+// const pause = pauseGame
 const gameButton = document.getElementById("gameButton");
+gameButton.addEventListener('click',gamePaused)
 const handleGameButton = () => {
     if (!gamePaused) {
         pauseGame();
