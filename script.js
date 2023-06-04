@@ -106,7 +106,7 @@ class MixOrMatch {
         }
     }
     flipHint(card2) {
-        if (this.canFlipCard(card2) && this.hint == 0) {
+        if (!gamePaused && this.canFlipCard(card2) && this.hint === 0) {
             this.audioController.flip();
             card2.classList.add('visible');
             this.hint = 1;
@@ -192,8 +192,10 @@ function ready() {
 let handleGameButton = () => {
     if (!gamePaused) {
         pauseGame();
+        hint.disabled = true; // Menonaktifkan button hint saat game dipause
     } else {
         resumeGame();
+        hint.disabled = false; // Mengaktifkan kembali button hint saat game dilanjutkan
     }
 }
 // audioController=new AudioController();
