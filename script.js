@@ -1,7 +1,9 @@
 let gameButton = document.getElementById("gameButton");
 let gamePaused = false;
-const score = document.querySelector('.score span')
+const score = document.querySelector('.score span');
 let audioController;
+let game;
+
 
 class AudioController {
     constructor() {
@@ -163,7 +165,7 @@ if (document.readyState == 'loading') {
 function ready() {
     let overlays = Array.from(document.getElementsByClassName('overlay-text'));
     let cards = Array.from(document.getElementsByClassName('card'));
-    let game = new MixOrMatch(50, cards);
+    game = new MixOrMatch(50, cards);
     let hint = document.getElementById('hint');
 
     overlays.forEach(overlay => {
@@ -175,6 +177,9 @@ function ready() {
 
     cards.forEach(card => {
         card.addEventListener('click', () => {
+           if (gamePaused){
+            return;
+           }
             game.flipCard(card);
         });
     });
@@ -191,17 +196,19 @@ let handleGameButton = () => {
         resumeGame();
     }
 }
-
+// audioController=new AudioController();
 const pauseGame = () => {
     gamePaused = true;
     console.log("permainan dijeda");
     gameButton.textContent = "Resume";
-    audioController.stopMusic();
+    game.audioController.stopMusic();
+    
+    console.log(audioController);
 }
 const resumeGame = () => {
     gamePaused = false;
     console.log("permainan dilanjutkan");
     gameButton.textContent = "Pause";
-    audioController.startMusic();
+    game.audioController.startMusic();
 }
 gameButton.addEventListener('click',handleGameButton)
